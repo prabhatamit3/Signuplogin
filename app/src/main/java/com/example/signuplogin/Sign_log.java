@@ -26,6 +26,10 @@ public class Sign_log extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signactivity);
+        if(ParseUser.getCurrentUser() != null){
+            transtistion_login();
+
+        }
         signup_switch=findViewById(R.id.signup_transfer);
         login_user=findViewById(R.id.loginuser);
         login_password=findViewById(R.id.loginpass);
@@ -89,8 +93,7 @@ public class Sign_log extends AppCompatActivity {
                 public void done(ParseUser user, ParseException e) {
                     if (e == null && user != null) {
 
-                        Intent intent1 = new Intent(Sign_log.this, ScrollingActivity.class);
-                        startActivity(intent1);
+                      transtistion_login();
 
 
                     } else {
@@ -113,5 +116,12 @@ public class Sign_log extends AppCompatActivity {
         }
 
     }
+    public void transtistion_login(){
+        Intent intent1 = new Intent(Sign_log.this, Socialmediaactivity.class);
+        startActivity(intent1);
+        final ProgressDialog progressDialog = new ProgressDialog(Sign_log.this);
+        progressDialog.dismiss();
 
+
+    }
 }
